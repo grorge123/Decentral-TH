@@ -1,3 +1,5 @@
+# Config
+env.sh
 # Logs
 logs
 *.log
