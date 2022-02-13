@@ -25,6 +25,8 @@ contract Auction is Ownable{
 	limitPrice[] limitPriceList;
 	mapping(address => mapping( address => mapping(uint => bool))) isSell;
 
+	address[] public whiteList;
+
 	constructor(address NTTokenAddress){
 		NTToken = IERC20(NTTokenAddress);
 	}
@@ -33,6 +35,14 @@ contract Auction is Ownable{
         return NTToken.balanceOf(_addr);
     }
 	
+	function setWhiteList(uint _id, address _addr) onlyOwner() public {
+		if(_id >= whiteList.length){
+			whiteList.push(_addr);
+		}else{
+			whiteList[_id] = _addr;
+		}
+	}
+
 	modifier checkPremission(address _NFTAddr, uint _tokenId, uint _price) {
 		IMyNFT NFTContract = IMyNFT(_NFTAddr);
         require(NFTContract.ownerOf(_tokenId) == msg.sender, "You are not Owner");
@@ -49,14 +59,14 @@ contract Auction is Ownable{
 		_;
 	}
 
-	function createLimitPriceOrder(address _NFTAddr, uint _tokenId, uint _price) checkPremission(_NFTAddr, _tokenId,  _price) public returns( uint ){
+	function createLimitPriceOrder(uint _NFTId, uint _tokenId, uint _price) checkPremission(whiteList[_NFTId], _tokenId,  _price) public returns( uint ){
 		limitPrice memory Order;
 		Order.creator = msg.sender;
 		Order.price = _price;
 		Order.tokenId = _tokenId;
-		Order.NFTContract = _NFTAddr;
+		Order.NFTContract = whiteList[_NFTId];
 		limitPriceList.push(Order);
-		isSell[msg.sender][_NFTAddr][_tokenId] = true;
+		isSell[msg.sender][whiteList[_NFTId]][_tokenId] = true;
 		return limitPriceList.length - 1;
 	}
 
@@ -83,8 +93,12 @@ contract Auction is Ownable{
 		limitPriceList.pop();
 	}
 
-	function getLimitPriceList() public view returns(limitPrice[] memory){
-		return limitPriceList;
+	function getLimitPriceListLength() public view returns(uint){
+		return limitPriceList.length;
+	}
+
+	function getLimitPriceList(uint _id) public view returns(limitPrice memory){
+		return limitPriceList[_id];
 	}
 	
 }
