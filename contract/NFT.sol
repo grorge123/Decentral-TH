@@ -8,16 +8,15 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 contract MyNFT is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
-    string baseURI;
+    string baseURI = "ipfs://";
     string public notRevealedUri;
-    string public baseExtension = ".json";
+    string public baseExtension;
 
     mapping(uint256 => string) private _tokenURIs;
-
-    constructor(string memory initBaseURI)
+    
+    constructor()
         ERC721("MyNFT", "MN")
     {
-        setBaseURI(initBaseURI);
     }
 
     function mint(address _to,  string calldata _uri) external onlyOwner {
@@ -65,5 +64,9 @@ contract MyNFT is ERC721Enumerable, Ownable {
 
     function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
+    }
+
+    function setbaseExtension(string memory _baseExtension) public onlyOwner {
+        baseExtension = _baseExtension;
     }
 }
