@@ -17,9 +17,17 @@
   },
   "homepage": "https://github.com/grorge123/Decentral-TH#readme",
   "dependencies": {
+    "@walletconnect/web3-provider": "^1.7.1",
+    "@web3auth/web3auth": "^0.3.2",
+    "browserify": "^17.0.0",
+    "express": "^4.17.3",
     "ipfs-car": "^0.6.1",
+    "magic-sdk": "^8.0.1",
     "moralis": "^1.3.2",
     "nft.storage": "^5.2.3",
-    "solc": "^0.8.11"
+    "node-metamask": "^1.1.2",
+    "parse-server": "^4.10.4",
+    "solc": "^0.8.11",
+    "web3": "^1.7.0"
   }
 }
