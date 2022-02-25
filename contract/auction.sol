@@ -100,5 +100,8 @@ contract Auction is Ownable{
 	function getLimitPriceList(uint _id) public view returns(limitPrice memory){
 		return limitPriceList[_id];
 	}
+	function getWhiteListLength() public view returns(uint){
+		return whiteList.length;
+	}
 	
 }

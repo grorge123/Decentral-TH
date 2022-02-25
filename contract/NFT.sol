@@ -5,29 +5,35 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Strings.sol";
 
-contract MyNFT is ERC721Enumerable, Ownable {
+contract NFTTemplate is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
-    string baseURI = "ipfs://";
-    string public notRevealedUri;
+    string public baseURI = "ipfs://";
     string public baseExtension;
+    string public defaultUri = "ipfs://default";
 
-    mapping(uint256 => string) private _tokenURIs;
+    mapping(uint256 => string) _tokenURIs;
     
-    constructor()
-        ERC721("FirstNFT", "FN")
+    constructor(string memory name, string memory symble, string memory _defaultUri)
+        ERC721(name, symble)
     {
+        defaultUri = _defaultUri;
     }
 
-    function mint(address _to,  string calldata _uri) external onlyOwner {
+    function mint(address _to,  string calldata _uri) external virtual onlyOwner {
         uint256 _tokenId = totalSupply();
         _mint(_to, _tokenId);
         _tokenURIs[_tokenId] = _uri;
     }
+    
+    function mint(address _to) external virtual onlyOwner {
+        uint256 _tokenId = totalSupply();
+        _mint(_to, _tokenId);
+    }
 
-    function withdraw(address to) public onlyOwner {
-        uint256 balance = address(this).balance;
-        payable(to).transfer(balance);
+    function setTokenUri(uint _tokenId, string calldata _uri) external onlyOwner{
+        require(bytes(_tokenURIs[_tokenId]).length == 0, "This NFT has been setted");
+        _tokenURIs[_tokenId] = _uri;
     }
 
     function tokenURI(uint256 tokenId)
@@ -45,9 +51,8 @@ contract MyNFT is ERC721Enumerable, Ownable {
         string memory _tokenURI = _tokenURIs[tokenId];
         string memory base = _baseURI();
 
-        // If there is no base URI, return the token URI.
-        if (bytes(base).length == 0) {
-            return _tokenURI;
+        if (bytes(_tokenURI).length == 0) {
+            return defaultUri;
         }
         // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
         if (bytes(baseExtension).length > 0) {
@@ -58,15 +63,15 @@ contract MyNFT is ERC721Enumerable, Ownable {
         return string(abi.encodePacked(base, _tokenURI));
     }
 
-    function _baseURI() internal view virtual override returns (string memory) {
-        return baseURI;
-    }
-
     function setBaseURI(string memory _newBaseURI) public onlyOwner {
         baseURI = _newBaseURI;
     }
 
     function setbaseExtension(string memory _baseExtension) public onlyOwner {
         baseExtension = _baseExtension;
+    }
+
+    function setDefaultUri(string memory _defaultUri) public onlyOwner {
+        defaultUri = _defaultUri;
     }
 }

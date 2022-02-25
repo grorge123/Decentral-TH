@@ -10,13 +10,13 @@ contract auctionTest{
 
 	NTToken token;
 	Auction auction;
-	MyNFT NFT; 
+	NFTTemplate NFT; 
 	uint constant initialUint = 10 ** 18;
 
 	function beforeAll() public {
         token = new NTToken();
 		auction = new Auction(address(token));
-		NFT = new MyNFT();
+		NFT = new NFTTemplate("myNFT", "MN", "ipfs://default");
 		NFT.mint(address(this), "TEST"); //tokenId = 0
 		NFT.mint(address(this), "TEST"); //tokenId = 1
 		NFT.mint(0xf04c6a55F0fdc0A5490d83Be69A7A675912A5AB3, "TEST"); //tokenId = 2
