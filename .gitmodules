@@ -1,0 +1,3 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/treeleaves30760/decentralth.git
