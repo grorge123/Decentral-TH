@@ -49,18 +49,17 @@ contract NFTTemplate is ERC721Enumerable, Ownable {
         );
 
         string memory _tokenURI = _tokenURIs[tokenId];
-        string memory base = _baseURI();
 
         if (bytes(_tokenURI).length == 0) {
             return defaultUri;
         }
-        // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
+
         if (bytes(baseExtension).length > 0) {
             return
-                string(abi.encodePacked(base, tokenId.toString(), baseExtension));
+                string(abi.encodePacked(baseURI, tokenId.toString(), baseExtension));
         }
-        // If there is a baseURI but no tokenURI, concatenate the tokenID to the baseURI.
-        return string(abi.encodePacked(base, _tokenURI));
+
+        return string(abi.encodePacked(baseURI, _tokenURI));
     }
 
     function setBaseURI(string memory _newBaseURI) public onlyOwner {

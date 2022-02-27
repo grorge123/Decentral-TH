@@ -10,7 +10,7 @@ contract fusionNFT is NFTTemplate {
     mapping(uint256 => mapping(uint256 => string)) public recipe;
 
     constructor()
-        NFTTemplate("FusionNFT", "FUN", "ipfs://default")
+        NFTTemplate("FusionNFT", "FUN", "ipfs://bafkreid4jqgen3erpgaua7u7iywzzdatolmopwpkldtnjiali2wy5qwanq")
     {
     }
 
