@@ -4,30 +4,19 @@ pragma experimental ABIEncoderV2;
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 import "./dateTime.sol";
+import "./admin.sol";
 
 
-contract NTToken is ERC20, Ownable{
-
+contract NTToken is ERC20, Ownable, Admin{
+    DateTime DateTranser;
     uint constant initialUint = 10 ** 18;
-    mapping(address => bool) admin;
+    
     mapping(address => uint[32]) loginTable;
 
     constructor() ERC20("Decentral-TH token", "NT") {    
         admin[msg.sender] = true;
         _mint(msg.sender, 1000000 * initialUint);
-    }
-
-    modifier onlyAdmin() {
-        require(admin[msg.sender] == true, "Permission denied.");
-        _;
-    }
-
-    function setAdmin(address _addr, bool _type) public onlyOwner{
-        admin[_addr] = _type;
-    }
-
-    function isAdmin(address _addr) public view returns(bool){
-        return admin[_addr];
+        DateTranser = new DateTime();
     }
 	
     function burnToken(address _addr, uint number) public onlyAdmin{
@@ -44,11 +33,11 @@ contract NTToken is ERC20, Ownable{
 
     function Login() public {
         uint nowTime = Time_call();
-        uint nowDay = DateTime.getDay(nowTime);
-        uint nowMonth = DateTime.getMonth(nowTime);
-        uint nowYear = DateTime.getYear(nowTime);
-        uint oldMonth = DateTime.getMonth(loginTable[msg.sender][nowDay]);
-        uint oldYear = DateTime.getYear(loginTable[msg.sender][nowDay]);
+        uint nowDay = DateTranser.getDay(nowTime);
+        uint nowMonth = DateTranser.getMonth(nowTime);
+        uint nowYear = DateTranser.getYear(nowTime);
+        uint oldMonth = DateTranser.getMonth(loginTable[msg.sender][nowDay]);
+        uint oldYear = DateTranser.getYear(loginTable[msg.sender][nowDay]);
         require(oldYear != nowYear || oldMonth != nowMonth, "You have login");
         loginTable[msg.sender][nowDay] = nowTime;
         _mint(msg.sender, 1 * initialUint);

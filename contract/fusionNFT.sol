@@ -5,7 +5,7 @@ import "./NFT.sol";
 
 contract fusionNFT is NFTTemplate {
     using Strings for uint256;
-	uint256 tokenIdCnt = 0;
+	
     
     mapping(uint256 => mapping(uint256 => string)) public recipe;
 
@@ -14,14 +14,14 @@ contract fusionNFT is NFTTemplate {
     {
     }
 
-    function mint(address _to,  string calldata _uri) override external onlyOwner {
+    function mint(address _to,  string calldata _uri) override external onlyAdmin {
         _mint(_to, tokenIdCnt);
         _tokenURIs[tokenIdCnt] = _uri;
 		tokenIdCnt += 1;
     }
 
 
-	function setRecipe(string calldata A, string calldata B, string calldata C) external onlyOwner {
+	function setRecipe(string calldata A, string calldata B, string calldata C) external onlyAdmin {
 		recipe[uint256(keccak256(bytes(A)))][uint256(keccak256(bytes(B)))] = C;
 		recipe[uint256(keccak256(bytes(B)))][uint256(keccak256(bytes(B)))] = C;
 	}

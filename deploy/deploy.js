@@ -3,15 +3,16 @@ const Web3 = require('web3');
 const EthereumTx = require('ethereumjs-tx').Transaction;
 
 // Connection Initialization
-
+const TEST = false;
 const address = '0xdb52AfE620ABBfE8C78d88ab65229aBFd14dAB4f';
 const address2 = '0xa7CD335f79DF10C24770f2E69d47c5233D9d5835'
 const pri = process.env.eth_pri;
 const rpcURL = "https://speedy-nodes-nyc.moralis.io/918f72084ae65bfdd0f7b7de/eth/rinkeby";
 
-// const address = '0x4eC746228343dDfa025E19D58A9E6BB592025B47';
-// const address2 = '0xb5D0f6134248d2471504Cf3c0633AC949B3E4409'
-// const pri = '0xab112fdcd282475b7c191f7f441c60d90e38e224360f9e919253181d7f6675e4'
+// const TEST = true;
+// const address = '0x6FFD852B44E792a02d0D5375eDF3FA29368381Ef';
+// const address2 = '0x957C777Ad2cE4f793Ae4094F7A74B258eDc662B8'
+// const pri = '0xe8d4cb5fa243a8e69a9859a398bb7cf8ff487d9227636de11c34149764694911'
 // const rpcURL = 'http://127.0.0.1:8545';
 
 const web3 = new Web3(rpcURL);
@@ -108,48 +109,84 @@ async function main() {
     auctionAddr = await deployContract(auctionAbi, auctionByte, auctionArguments);
     auctionContract = new web3.eth.Contract(JSON.parse(auctionAbi), auctionAddr);
     console.log("auctionAddr:", auctionAddr);
-    try {
+
+    storeAbi = require('../bin/storeabi.json');
+    storeByte = require('../bin/storebyte.json');
+    storeAbi = JSON.stringify(storeAbi);
+    storeByte = storeByte.object;
+    storeArguments = [fusionNFTAddr, tokenAddr];
+    storeAddr = await deployContract(storeAbi, storeByte, storeArguments);
+    storeContract = new web3.eth.Contract(JSON.parse(storeAbi), storeAddr);
+    console.log("storeAddr:", storeAddr);
+
+    erc20abi = require("../bin/erc20abi.json");
+    erc20abi = JSON.stringify(erc20abi);
+    LinkContract = new web3.eth.Contract(JSON.parse(erc20abi), "0x01BE23585060835E02B77ef475b0Cc51aA1e0709")
+    // LinkContract = new web3.eth.Contract(require("../bin/erc20abi.json"), tokenAddr);
         
+    try {
         // set whiteList
-        await auctionContract.methods.setWhiteList(1, NFTAddr).send({ from: address, gas: 3500000 })
-        sleep(3000)
-        await auctionContract.methods.setWhiteList(2, fusionNFTAddr).send({ from: address, gas: 3500000 })
+        await auctionContract.methods.setWhiteList(1, NFTAddr).send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await auctionContract.methods.setWhiteList(2, fusionNFTAddr).send({ from: address, gas: 3500000 });
         console.log("Finish whiteList")
         // mint NFT
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address2, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address2, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         console.log("Finish mint NFT")
         await fusionNFTContract.methods.mint(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address2, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address2, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address2).send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         console.log("Finish mint fusion")
         // create order
         await NFTContract.methods.approve(auctionAddr, 0).send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         await auctionContract.methods.createLimitPriceOrder(0, 0, 5).send({ from: address, gas: 3500000 });
-        sleep(3000)
+        if(!TEST)sleep(10000)
         console.log("Finish create order")
+        // Set Admin
+        await fusionNFTContract.methods.setAdmin(storeAddr, true).send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        console.log("Set admin to Store")
+        // Set NFTUri
+        await storeContract.methods.setfusionNFTUri(1, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await storeContract.methods.setfusionNFTUri(2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await storeContract.methods.setfusionNFTUri(3, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await storeContract.methods.setfusionNFTUri(4, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
+        console.log("Finish create NFTUri")
+        // Get NFT
+        await storeContract.methods.setFusionNFTPrice(5).send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await tokenContract.methods.approve(storeAddr, web3.utils.toBN(5 * 10 ** 18)).send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await storeContract.methods.getFusionNFT().send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        console.log("Get random NFT");
     }catch (err) {
         console.log(err)
+        getRevertReason(err.receipt.transactionHash)
     }
-    console.log("Finish")
+    console.log("All Finish")
 }
 main()
