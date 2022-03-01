@@ -10,9 +10,9 @@ const pri = process.env.eth_pri;
 const rpcURL = "https://speedy-nodes-nyc.moralis.io/918f72084ae65bfdd0f7b7de/eth/rinkeby";
 
 // const TEST = true;
-// const address = '0x6FFD852B44E792a02d0D5375eDF3FA29368381Ef';
-// const address2 = '0x957C777Ad2cE4f793Ae4094F7A74B258eDc662B8'
-// const pri = '0xe8d4cb5fa243a8e69a9859a398bb7cf8ff487d9227636de11c34149764694911'
+// const address = '0x80DFB94119a7A66bFDf828C31e8e0B0bE75945a4';
+// const address2 = '0x0Bae38CfB023B66ec50712A61257e779B95BbB79'
+// const pri = '0x897ab90fa653d8463911573867ad60bb0627aa8cbecb9241a7cb7b53a2336f66'
 // const rpcURL = 'http://127.0.0.1:8545';
 
 const web3 = new Web3(rpcURL);
@@ -136,22 +136,30 @@ async function main() {
         if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
+        await NFTContract.methods.mint(address2, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         await NFTContract.methods.mint(address2, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
-        if(!TEST)sleep(10000)
-        await NFTContract.methods.mint(address2, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        await NFTContract.methods.mint(address2, "bafkreiffao6m7vkk3deudetthb52onartnvcxgcbcmosbzg3jzqglvjiee").send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        await NFTContract.methods.mint(address2, "bafkreihhq6vhiwmfnhuycx7vv6lmxooapzx47a22bluzt72w7qftkbmaoy").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         console.log("Finish mint NFT")
         await fusionNFTContract.methods.mint(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
-        await fusionNFTContract.methods.mint(address2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
-        if(!TEST)sleep(10000)
-        await fusionNFTContract.methods.mint(address2, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
-        if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address2, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await fusionNFTContract.methods.mint(address2, "bafkreiau6a2vgq67ltm2hdaq2hmyfpollnfgwod6diwrh72qxfzxlo3rvu").send({ from: address, gas: 3500000 });
+        if(!TEST)sleep(10000)
+        await fusionNFTContract.methods.mint(address2, "bafkreicazi7qeikjvy76jpyr7gtal2i7zggsjaew2wmz4n5qexbvpso7ui").send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        await fusionNFTContract.methods.mint(address2, "bafkreidd6xfbkdgrihw7zf2ednsvrz3omlahqptarfojwtav2lbx2nq434").send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        await fusionNFTContract.methods.mint(address2, "bafkreieosbv2shd2e7jvugppyp65um7vvuxtwhr4sdizav5527g7d7fmau").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         await fusionNFTContract.methods.mint(address2).send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
@@ -167,20 +175,20 @@ async function main() {
         if(!TEST)sleep(10000)
         console.log("Set admin to Store")
         // Set NFTUri
-        await storeContract.methods.setfusionNFTUri(1, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
+        await storeContract.methods.setNFTUri(fusionNFTAddr, 1, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
-        await storeContract.methods.setfusionNFTUri(2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
+        await storeContract.methods.setNFTUri(fusionNFTAddr, 2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
-        await storeContract.methods.setfusionNFTUri(3, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
+        await storeContract.methods.setNFTUri(fusionNFTAddr, 3, "bafkreic2jxz3yygsomqcrvoulbrpbpk44pvouuctutcdheysxwaozmg5vq").send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
-        await storeContract.methods.setfusionNFTUri(4, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
+        await storeContract.methods.setNFTUri(fusionNFTAddr, 4, "bafkreibdylxhwh7yp2sp5rrkktvqet6h3s27bfgotjtckkkclgsnfw6mya").send({ from: address, gas: 3500000 });
         console.log("Finish create NFTUri")
         // Get NFT
-        await storeContract.methods.setFusionNFTPrice(5).send({ from: address, gas: 3500000 });
+        await storeContract.methods.setNFTPrice(fusionNFTAddr, 5).send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         await tokenContract.methods.approve(storeAddr, web3.utils.toBN(5 * 10 ** 18)).send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
-        await storeContract.methods.getFusionNFT().send({ from: address, gas: 3500000 });
+        await storeContract.methods.getNFT(fusionNFTAddr).send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         console.log("Get random NFT");
     }catch (err) {

@@ -8,16 +8,19 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 
 contract Store is Admin{
 	fusionNFT FNFT;
-	VRFv2Consumer VRF;
 	IERC20 NTToken;
-	uint constant initialUint = 10 ** 18;
-	uint fusionNFTPrice = 100 * initialUint;
+	struct NormalNFT{
+		uint price;
+		string[] uri;
+	}
+	uint constant public initialUint = 10 ** 18;
+	uint public fusionNFTPrice = 100 * initialUint;
 	string[] fusionNFTUri;
 
-    uint256 internal fee;
+	mapping(address => NormalNFT) NFTList;
+
 	bytes32 private lastrandom;
     
-    uint256 public randomResult;
 
 	constructor(address fusionAddr, address NTTokenAddr)
 	{
@@ -37,25 +40,25 @@ contract Store is Admin{
 		_;
 	}
 
-	function getFusionNFT() checkToken(fusionNFTPrice) public {
-		NTToken.transferFrom(msg.sender, address(this), fusionNFTPrice);
-		uint NFTUriId = RandomNumber() % fusionNFTUri.length;
-		FNFT.mint(msg.sender, fusionNFTUri[NFTUriId]);
+	function getNFT(address contractAddr) checkToken(NFTList[contractAddr].price) public {
+		NTToken.transferFrom(msg.sender, address(this), NFTList[contractAddr].price);
+		uint NFTUriId = RandomNumber() % NFTList[contractAddr].uri.length;
+		FNFT.mint(msg.sender, NFTList[contractAddr].uri[NFTUriId]);
 	}
 	
-	function setFusionNFTPrice(uint _price) public onlyAdmin{ 
-		fusionNFTPrice = _price * initialUint;
+	function setNFTPrice(address contractAddr, uint _price) public onlyAdmin{ 
+		NFTList[contractAddr].price = _price * initialUint;
 	}
 
-	function fusionNFTUriLength() public view returns(uint){
-		return fusionNFTUri.length;
+	function NFTUriLength(address contractAddr) public view returns(uint){
+		return NFTList[contractAddr].uri.length;
 	}
 
-	function setfusionNFTUri(uint _id, string calldata _uri) public onlyAdmin{
-		if(_id >= fusionNFTUri.length){
-			fusionNFTUri.push(_uri);
+	function setNFTUri(address contractAddr, uint _id, string calldata _uri) public onlyAdmin{
+		if(_id >= NFTList[contractAddr].uri.length){
+			NFTList[contractAddr].uri.push(_uri);
 		}else{
-			fusionNFTUri[_id] = _uri;
+			NFTList[contractAddr].uri[_id] = _uri;
 		}
 	}
 

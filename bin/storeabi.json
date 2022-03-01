@@ -35,6 +35,25 @@
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "contractAddr",
+				"type": "address"
+			}
+		],
+		"name": "NFTUriLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "RandomNumber",
 		"outputs": [
@@ -49,7 +68,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "fusionNFTUriLength",
+		"name": "fusionNFTPrice",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -61,10 +80,29 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getFusionNFT",
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "contractAddr",
+				"type": "address"
+			}
+		],
+		"name": "getNFT",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "initialUint",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -101,19 +139,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "randomResult",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "renounceOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
@@ -140,18 +165,28 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "contractAddr",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
 				"name": "_price",
 				"type": "uint256"
 			}
 		],
-		"name": "setFusionNFTPrice",
+		"name": "setNFTPrice",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
+			{
+				"internalType": "address",
+				"name": "contractAddr",
+				"type": "address"
+			},
 			{
 				"internalType": "uint256",
 				"name": "_id",
@@ -163,7 +198,7 @@
 				"type": "string"
 			}
 		],
-		"name": "setfusionNFTUri",
+		"name": "setNFTUri",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

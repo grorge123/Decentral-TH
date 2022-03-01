@@ -5,7 +5,7 @@ const fs = require('fs');
 
   
 const basePath = "./images/";
-const fileName = "black.jpg";
+const fileName = "10.jpg";
 const path = basePath + fileName;
 const name = "Test Image" + fileName;
 const description = "This is test image";
