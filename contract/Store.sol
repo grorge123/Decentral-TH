@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 import "./fusionNFT.sol";
-import "./VRF.sol";
 import "./admin.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
 
@@ -15,9 +14,9 @@ contract Store is Admin{
 	}
 	uint constant public initialUint = 10 ** 18;
 	uint public fusionNFTPrice = 100 * initialUint;
-	string[] fusionNFTUri;
+	string[] public fusionNFTUri;
 
-	mapping(address => NormalNFT) NFTList;
+	mapping(address => NormalNFT) public NFTList;
 
 	bytes32 private lastrandom;
     
@@ -60,6 +59,14 @@ contract Store is Admin{
 		}else{
 			NFTList[contractAddr].uri[_id] = _uri;
 		}
+	}
+
+	function getPrice(address contractAddr) public view returns(uint){
+		return NFTList[contractAddr].price;
+	}
+
+	function getNFTUri(address contractAddr, uint _id) public view returns(string memory){
+		return NFTList[contractAddr].uri[_id];
 	}
 
 }
