@@ -39,17 +39,18 @@ contract Store is Admin{
 		_;
 	}
 
-	function getNFT(address contractAddr) checkToken(NFTList[contractAddr].price) public {
+	function getNFT(address contractAddr) checkToken(NFTList[contractAddr].price) public returns(string memory) {
 		NTToken.transferFrom(msg.sender, address(this), NFTList[contractAddr].price);
 		uint NFTUriId = RandomNumber() % NFTList[contractAddr].uri.length;
 		FNFT.mint(msg.sender, NFTList[contractAddr].uri[NFTUriId]);
+		return NFTList[contractAddr].uri[NFTUriId];
 	}
 	
 	function setNFTPrice(address contractAddr, uint _price) public onlyAdmin{ 
 		NFTList[contractAddr].price = _price * initialUint;
 	}
 
-	function NFTUriLength(address contractAddr) public view returns(uint){
+	function getNFTUriLength(address contractAddr) public view returns(uint){
 		return NFTList[contractAddr].uri.length;
 	}
 
