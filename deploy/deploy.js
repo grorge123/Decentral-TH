@@ -10,9 +10,9 @@ const pri = process.env.eth_pri;
 const rpcURL = "https://speedy-nodes-nyc.moralis.io/918f72084ae65bfdd0f7b7de/eth/rinkeby";
 
 // const TEST = true;
-// const address = '0x80DFB94119a7A66bFDf828C31e8e0B0bE75945a4';
-// const address2 = '0x0Bae38CfB023B66ec50712A61257e779B95BbB79'
-// const pri = '0x897ab90fa653d8463911573867ad60bb0627aa8cbecb9241a7cb7b53a2336f66'
+// const address = '0x3d7995954c3a784846c911fd54a91aebFB7623fb';
+// const address2 = '0x0102e05c99315664EAADB857D79989b159bB9C19'
+// const pri = '0x66f4607eedf03b1d30ef68ffdba10002b11fb70d487df7dbca3d10546ec24047'
 // const rpcURL = 'http://127.0.0.1:8545';
 
 const web3 = new Web3(rpcURL);
@@ -191,6 +191,15 @@ async function main() {
         await storeContract.methods.getNFT(fusionNFTAddr).send({ from: address, gas: 3500000 });
         if(!TEST)sleep(10000)
         console.log("Get random NFT");
+        // transfor token
+        await tokenContract.methods.transfer(address2, web3.utils.toBN(500 * 10 ** 18)).send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        await fusionNFTContract.methods.setRecipe("bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy", "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq", "bafkreieosbv2shd2e7jvugppyp65um7vvuxtwhr4sdizav5527g7d7fmau").send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        await fusionNFTContract.methods.fusion(0,1).send({ from: address, gas: 3500000 });
+        if (!TEST) sleep(10000)
+        console.log("Finish fusion");
+
     }catch (err) {
         console.log(err)
         getRevertReason(err.receipt.transactionHash)

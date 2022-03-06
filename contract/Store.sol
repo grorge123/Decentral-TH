@@ -6,6 +6,9 @@ import "./admin.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
 
 contract Store is Admin{
+
+	event getNFTEvent(address contractAddr, address user, string uri);
+	
 	fusionNFT FNFT;
 	IERC20 NTToken;
 	struct NormalNFT{
@@ -40,9 +43,12 @@ contract Store is Admin{
 	}
 
 	function getNFT(address contractAddr) checkToken(NFTList[contractAddr].price) public returns(string memory) {
+		require(NFTList[contractAddr].uri.length > 0, "It have not been store");
+
 		NTToken.transferFrom(msg.sender, address(this), NFTList[contractAddr].price);
 		uint NFTUriId = RandomNumber() % NFTList[contractAddr].uri.length;
 		FNFT.mint(msg.sender, NFTList[contractAddr].uri[NFTUriId]);
+		emit getNFTEvent(contractAddr, msg.sender, NFTList[contractAddr].uri[NFTUriId]);
 		return NFTList[contractAddr].uri[NFTUriId];
 	}
 	

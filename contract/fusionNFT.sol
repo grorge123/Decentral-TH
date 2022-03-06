@@ -26,6 +26,10 @@ contract fusionNFT is NFTTemplate {
 		recipe[uint256(keccak256(bytes(B)))][uint256(keccak256(bytes(B)))] = C;
 	}
 
+    function getRecipe(string calldata A, string calldata B) public view returns(string memory){
+        return recipe[uint256(keccak256(bytes(A)))][uint256(keccak256(bytes(B)))];
+    }
+
 	function fusion(uint256 tokenIdA, uint256 tokenIdB)external {
 		require(ownerOf(tokenIdA) == msg.sender, "You are not the first NFT owner");
 		require(ownerOf(tokenIdB) == msg.sender, "You are not the second NFT owner");
