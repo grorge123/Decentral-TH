@@ -206,4 +206,24 @@ async function main() {
     }
     console.log("All Finish")
 }
-main()
+// main()
+
+async function test() {
+    fusionNFTAbi = require('../bin/fusionnftabi.json');
+    fusionNFTByte = require('../bin/fusionnftbyte.json');
+    fusionNFTAbi = JSON.stringify(fusionNFTAbi);
+    fusionNFTContract = new web3.eth.Contract(JSON.parse(fusionNFTAbi), "0xd9d371baeB9D24a0D9a162bBbd13bb7Ab13472e1");
+    while (true) {
+        try {
+            await fusionNFTContract.methods.mint(address2, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").send({ from: address, gas: 3500000 });
+            // if(!TEST)sleep(10000)
+            console.log("1")
+            await fusionNFTContract.methods.mint(address2, "bafkreidsvfuuvx2amgg4vlui4f6v267gkzhb5s5t5xkripbxro6tbjqsvq").send({ from: address, gas: 3500000 });
+            // if(!TEST)sleep(10000)
+            console.log("2")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+test()
