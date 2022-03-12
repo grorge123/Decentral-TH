@@ -23,7 +23,7 @@ contract fusionNFT is NFTTemplate {
 
 	function setRecipe(string calldata A, string calldata B, string calldata C) external onlyAdmin {
 		recipe[uint256(keccak256(bytes(A)))][uint256(keccak256(bytes(B)))] = C;
-		recipe[uint256(keccak256(bytes(B)))][uint256(keccak256(bytes(B)))] = C;
+		recipe[uint256(keccak256(bytes(B)))][uint256(keccak256(bytes(A)))] = C;
 	}
 
     function getRecipe(string calldata A, string calldata B) public view returns(string memory){
