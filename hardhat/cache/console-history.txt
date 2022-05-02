@@ -1,0 +1,83 @@
+NFTContract.tokenURI(4).then(console.log)
+NFTContract.address
+NFTContract.mint2(address, "QmcGByRh3dYoZA8av3CmErhmeEFiERzGYzfQ7iBqU1hb5G").then(console.log)
+NFTContract.mint2(address, "QmcGByRh3dYoZA8av3CmErhmeEFiERzGYzfQ7iBqU1hb5G");
+const address = '0xa7102Fb5f86A448063305ff9d13a2D7f37b18097';
+NFTContract.setTokenUri(0, "QmcGByRh3dYoZA8av3CmErhmeEFiERzGYzfQ7iBqU1hb5G")
+NFTContract.tokenURI(1).then(console.log)
+NFTContract.tokenURI(0).then(console.log)
+NFTContract.setBaseURI("https://ipfs.io/ipfs/").then(console.log)
+NFTContract = await FusionNFT.attach("0xaf78b67bC68FA1f9e7B44a48ae15B07B99719677")
+)
+NFTContract.tokenURI(1).then(console.log
+NFTContract.tokenURI(0).then(console.log)
+NFTContract = await FusionNFT.attach("0x85875f6E3336374B823582D1e32a8c1252240601")
+NFTContract.tokenURI(0).then(console.log)
+NFTContract = await FusionNFT.attach("0x2953399124f0cbb46d2cbacd8a89cf0599974963")
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+const hre = require("hardhat");
+NFTContract.tokenURI(0).then(console.log)
+ipfs://bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy/
+NFTContract.tokenURI(1).then(console.log)
+NFTContract = await FusionNFT.attach("0xf5B203792093fFB43A176B006AA6Ca758d85c686")
+NFTContract.tokenURI(1).then(console.log)
+NFTContract = await FusionNFT.attach("0x2a26aa5be62947d6be159d4d96be8cf3abe21a88")
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+NFTContract = await FusionNFT.attach("0x2a26aa5be62947d6be159d4d96be8cf3abe21a88")
+const hre = require("hardhat");
+NFTContract = await FusionNFT.attach("0x2a26aa5be62947d6be159d4d96be8cf3abe21a88")
+NFTContract.tokenURI(1).then(console.log)
+NFTContract = await FusionNFT.attach("0x2a26aa5be62947d6be159d4d96be8cf3abe21a88")
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+const hre = require("hardhat");
+address
+NFTContract.mint2(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").then(console.log)
+NFTContract = await FusionNFT.attach("0x0De4b5b6078ef39DeA9Ec8a515c4B3C4145EbCa2")
+NFTContract.functions.tokenURI(0).then(console.log)
+NFTContract = await FusionNFT.attach("0xD71003B2b3b9b5625e277070d3ab18922488D083")
+NFTContract.functions.tokenURI(0).then(console.log)
+address
+NFTContract.mint2(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").then(console.log)
+NFTContract.functions.mint2(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").then(console.log)
+NFTContract.functions.mint2()
+NFTContract.mint2()
+NFTContract.mint2(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").then(console.log)
+NFTContract.functions.mint2(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").then(console.log)
+const address = '0xa7102Fb5f86A448063305ff9d13a2D7f37b18097';
+NFTContract.functions.mint2(address, "bafkreibe3woikuhs26nkeoo2acgtjhwz5nzd4epp2nqnno7246rs4r4ouy").then(console.log)
+NFTContract = await FusionNFT.attach(0x0De4b5b6078ef39DeA9Ec8a515c4B3C4145EbCa2)
+NFTContract = await FusionNFT.attach()
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+const hre = require("hardhat");
+NFTContract = await FusionNFT.attach(0x823679C9703825915F75c2CB5e28faD5770df51c)
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+const hre = require("hardhat");
+NFTContract
+NFTContract = await FusionNFT.attach("0xd9d371baeB9D24a0D9a162bBbd13bb7Ab13472e1")
+NFTContract.tokenURI(0).then(console.log)
+NFTContract.functions.mint
+NFTContract.functions.mint2
+NFTContract.functions.tokenURI(6).then(console.log)
+NFTContract.functions.ownerOf(6).then(console.log)
+NFTContract.functions.tokenURI(6).then(console.log)
+NFTContract.functions.tokenURI(5).then(console.log)
+NFTContract.functions.tokenURI(0).then(console.log)
+NFTContract.function.tokenURI().then(console.log)
+NFTContract.tokenURI().then(console.log)
+NFTContract = await FusionNFT.attach("0xD71003B2b3b9b5625e277070d3ab18922488D083")
+NFTContract.baseURI().then(console.log)
+NFTContract.baseURI.then(console.log)
+NFTContract.tokenURI(1).then(console.log)
+NFTContract.tokenURI(1\).then(console.log)
+NFTContract.tokenURI(0).then(console.log)
+NFTContract = await FusionNFT.attach(0xD71003B2b3b9b5625e277070d3ab18922488D083)
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+const hre = require("hardhat");
+NFTContract.functions.baseURI().then(console.log)
+NFTContract.functions.symbol()
+NFTContract.functions.mint("")
+NFTContract.functions
+NFTContract = await FusionNFT.attach("0x7462E12Bb1e87a9977B03D2b732eCdf19a87f2e7")
+NFTContract = await FusionNFT.attach(fusionNFT.address)
+const FusionNFT = await hre.ethers.getContractFactory("fusionNFT");
+const hre = require("hardhat");
